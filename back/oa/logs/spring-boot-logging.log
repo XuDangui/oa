@@ -1,0 +1,97 @@
+2018-12-02 21:55:09.002  INFO 16084 --- [main] com.xws.oa.App                           : Starting App on DESKTOP-NEAI5B2 with PID 16084 (E:\develp_soft\Eclipse\workspace\myself\oa\target\classes started by LENOVO in E:\develp_soft\Eclipse\workspace\myself\oa)
+2018-12-02 21:55:09.016  INFO 16084 --- [main] com.xws.oa.App                           : No active profile set, falling back to default profiles: default
+2018-12-02 21:55:10.660  WARN 16084 --- [main] o.m.s.mapper.ClassPathMapperScanner      : No MyBatis mapper was found in '[com.xws.oa.dao]' package. Please check your configuration.
+2018-12-02 21:55:11.240  WARN 16084 --- [main] o.m.s.mapper.ClassPathMapperScanner      : No MyBatis mapper was found in '[com.xws.oa]' package. Please check your configuration.
+2018-12-02 21:55:13.780 ERROR 16084 --- [main] o.a.catalina.core.AprLifecycleListener   : An incompatible version [1.2.7] of the APR based Apache Tomcat Native library is installed, while Tomcat requires version [1.2.14]
+2018-12-02 21:55:14.119 ERROR 16084 --- [main] o.a.catalina.core.AprLifecycleListener   : An incompatible version [1.2.7] of the APR based Apache Tomcat Native library is installed, while Tomcat requires version [1.2.14]
+2018-12-02 21:55:14.157  INFO 16084 --- [main] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
+2018-12-02 21:55:14.158  INFO 16084 --- [main] org.apache.catalina.core.StandardEngine  : Starting Servlet Engine: Apache Tomcat/8.5.28
+2018-12-02 21:55:14.202 ERROR 16084 --- [localhost-startStop-1] o.a.catalina.core.AprLifecycleListener   : An incompatible version [1.2.7] of the APR based Apache Tomcat Native library is installed, while Tomcat requires version [1.2.14]
+2018-12-02 21:55:14.536  INFO 16084 --- [localhost-startStop-1] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring embedded WebApplicationContext
+2018-12-02 21:55:17.961  WARN 16084 --- [main] ion$DefaultTemplateResolverConfiguration : Cannot find template location: classpath:/static/ (please add some templates or check your Thymeleaf configuration)
+2018-12-02 21:55:17.991  WARN 16084 --- [main] org.thymeleaf.templatemode.TemplateMode  : [THYMELEAF][main] Template Mode 'HTML5' is deprecated. Using Template Mode 'HTML' instead.
+2018-12-02 21:55:18.548  WARN 16084 --- [main] ConfigServletWebServerApplicationContext : Exception encountered during context initialization - cancelling refresh attempt: org.springframework.beans.factory.BeanCreationException: Error creating bean with name 'gsonBuilder' defined in class path resource [org/springframework/boot/autoconfigure/gson/GsonAutoConfiguration.class]: Bean instantiation via factory method failed; nested exception is org.springframework.beans.BeanInstantiationException: Failed to instantiate [com.google.gson.GsonBuilder]: Factory method 'gsonBuilder' threw exception; nested exception is java.lang.BootstrapMethodError: java.lang.NoSuchMethodError: com.google.gson.GsonBuilder.setLenient()Lcom/google/gson/GsonBuilder;
+2018-12-02 21:55:18.557  INFO 16084 --- [main] o.apache.catalina.core.StandardService   : Stopping service [Tomcat]
+2018-12-02 21:55:18.617  WARN 16084 --- [localhost-startStop-1] o.a.c.loader.WebappClassLoaderBase       : The web application [ROOT] appears to have started a thread named [Abandoned connection cleanup thread] but has failed to stop it. This is very likely to create a memory leak. Stack trace of thread:
+ java.lang.Object.wait(Native Method)
+ java.lang.ref.ReferenceQueue.remove(ReferenceQueue.java:143)
+ com.mysql.jdbc.AbandonedConnectionCleanupThread.run(AbandonedConnectionCleanupThread.java:43)
+2018-12-02 21:55:18.668 ERROR 16084 --- [main] o.s.boot.SpringApplication               : Application run failed
+
+org.springframework.beans.factory.BeanCreationException: Error creating bean with name 'gsonBuilder' defined in class path resource [org/springframework/boot/autoconfigure/gson/GsonAutoConfiguration.class]: Bean instantiation via factory method failed; nested exception is org.springframework.beans.BeanInstantiationException: Failed to instantiate [com.google.gson.GsonBuilder]: Factory method 'gsonBuilder' threw exception; nested exception is java.lang.BootstrapMethodError: java.lang.NoSuchMethodError: com.google.gson.GsonBuilder.setLenient()Lcom/google/gson/GsonBuilder;
+	at org.springframework.beans.factory.support.ConstructorResolver.instantiateUsingFactoryMethod(ConstructorResolver.java:587) ~[spring-beans-5.0.4.RELEASE.jar:5.0.4.RELEASE]
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.instantiateUsingFactoryMethod(AbstractAutowireCapableBeanFactory.java:1250) ~[spring-beans-5.0.4.RELEASE.jar:5.0.4.RELEASE]
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.createBeanInstance(AbstractAutowireCapableBeanFactory.java:1099) ~[spring-beans-5.0.4.RELEASE.jar:5.0.4.RELEASE]
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.doCreateBean(AbstractAutowireCapableBeanFactory.java:545) ~[spring-beans-5.0.4.RELEASE.jar:5.0.4.RELEASE]
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.createBean(AbstractAutowireCapableBeanFactory.java:502) ~[spring-beans-5.0.4.RELEASE.jar:5.0.4.RELEASE]
+	at org.springframework.beans.factory.support.AbstractBeanFactory.lambda$doGetBean$0(AbstractBeanFactory.java:312) ~[spring-beans-5.0.4.RELEASE.jar:5.0.4.RELEASE]
+	at org.springframework.beans.factory.support.DefaultSingletonBeanRegistry.getSingleton(DefaultSingletonBeanRegistry.java:228) ~[spring-beans-5.0.4.RELEASE.jar:5.0.4.RELEASE]
+	at org.springframework.beans.factory.support.AbstractBeanFactory.doGetBean(AbstractBeanFactory.java:310) ~[spring-beans-5.0.4.RELEASE.jar:5.0.4.RELEASE]
+	at org.springframework.beans.factory.support.AbstractBeanFactory.getBean(AbstractBeanFactory.java:200) ~[spring-beans-5.0.4.RELEASE.jar:5.0.4.RELEASE]
+	at org.springframework.beans.factory.support.DefaultListableBeanFactory.preInstantiateSingletons(DefaultListableBeanFactory.java:760) ~[spring-beans-5.0.4.RELEASE.jar:5.0.4.RELEASE]
+	at org.springframework.context.support.AbstractApplicationContext.finishBeanFactoryInitialization(AbstractApplicationContext.java:868) ~[spring-context-5.0.4.RELEASE.jar:5.0.4.RELEASE]
+	at org.springframework.context.support.AbstractApplicationContext.refresh(AbstractApplicationContext.java:549) ~[spring-context-5.0.4.RELEASE.jar:5.0.4.RELEASE]
+	at org.springframework.boot.web.servlet.context.ServletWebServerApplicationContext.refresh(ServletWebServerApplicationContext.java:140) ~[spring-boot-2.0.0.RELEASE.jar:2.0.0.RELEASE]
+	at org.springframework.boot.SpringApplication.refresh(SpringApplication.java:752) [spring-boot-2.0.0.RELEASE.jar:2.0.0.RELEASE]
+	at org.springframework.boot.SpringApplication.refreshContext(SpringApplication.java:388) [spring-boot-2.0.0.RELEASE.jar:2.0.0.RELEASE]
+	at org.springframework.boot.SpringApplication.run(SpringApplication.java:327) [spring-boot-2.0.0.RELEASE.jar:2.0.0.RELEASE]
+	at org.springframework.boot.SpringApplication.run(SpringApplication.java:1246) [spring-boot-2.0.0.RELEASE.jar:2.0.0.RELEASE]
+	at org.springframework.boot.SpringApplication.run(SpringApplication.java:1234) [spring-boot-2.0.0.RELEASE.jar:2.0.0.RELEASE]
+	at com.xws.oa.App.main(App.java:19) [classes/:na]
+Caused by: org.springframework.beans.BeanInstantiationException: Failed to instantiate [com.google.gson.GsonBuilder]: Factory method 'gsonBuilder' threw exception; nested exception is java.lang.BootstrapMethodError: java.lang.NoSuchMethodError: com.google.gson.GsonBuilder.setLenient()Lcom/google/gson/GsonBuilder;
+	at org.springframework.beans.factory.support.SimpleInstantiationStrategy.instantiate(SimpleInstantiationStrategy.java:185) ~[spring-beans-5.0.4.RELEASE.jar:5.0.4.RELEASE]
+	at org.springframework.beans.factory.support.ConstructorResolver.instantiateUsingFactoryMethod(ConstructorResolver.java:579) ~[spring-beans-5.0.4.RELEASE.jar:5.0.4.RELEASE]
+	... 18 common frames omitted
+Caused by: java.lang.BootstrapMethodError: java.lang.NoSuchMethodError: com.google.gson.GsonBuilder.setLenient()Lcom/google/gson/GsonBuilder;
+	at org.springframework.boot.autoconfigure.gson.GsonAutoConfiguration$StandardGsonBuilderCustomizer.customize(GsonAutoConfiguration.java:96) ~[spring-boot-autoconfigure-2.0.0.RELEASE.jar:2.0.0.RELEASE]
+	at org.springframework.boot.autoconfigure.gson.GsonAutoConfiguration.lambda$gsonBuilder$0(GsonAutoConfiguration.java:49) ~[spring-boot-autoconfigure-2.0.0.RELEASE.jar:2.0.0.RELEASE]
+	at java.util.ArrayList.forEach(ArrayList.java:1249) ~[na:1.8.0_91]
+	at org.springframework.boot.autoconfigure.gson.GsonAutoConfiguration.gsonBuilder(GsonAutoConfiguration.java:49) ~[spring-boot-autoconfigure-2.0.0.RELEASE.jar:2.0.0.RELEASE]
+	at org.springframework.boot.autoconfigure.gson.GsonAutoConfiguration$$EnhancerBySpringCGLIB$$23911dca.CGLIB$gsonBuilder$2(<generated>) ~[spring-boot-autoconfigure-2.0.0.RELEASE.jar:2.0.0.RELEASE]
+	at org.springframework.boot.autoconfigure.gson.GsonAutoConfiguration$$EnhancerBySpringCGLIB$$23911dca$$FastClassBySpringCGLIB$$894546de.invoke(<generated>) ~[spring-boot-autoconfigure-2.0.0.RELEASE.jar:2.0.0.RELEASE]
+	at org.springframework.cglib.proxy.MethodProxy.invokeSuper(MethodProxy.java:228) ~[spring-core-5.0.4.RELEASE.jar:5.0.4.RELEASE]
+	at org.springframework.context.annotation.ConfigurationClassEnhancer$BeanMethodInterceptor.intercept(ConfigurationClassEnhancer.java:361) ~[spring-context-5.0.4.RELEASE.jar:5.0.4.RELEASE]
+	at org.springframework.boot.autoconfigure.gson.GsonAutoConfiguration$$EnhancerBySpringCGLIB$$23911dca.gsonBuilder(<generated>) ~[spring-boot-autoconfigure-2.0.0.RELEASE.jar:2.0.0.RELEASE]
+	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method) ~[na:1.8.0_91]
+	at sun.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62) ~[na:1.8.0_91]
+	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43) ~[na:1.8.0_91]
+	at java.lang.reflect.Method.invoke(Method.java:498) ~[na:1.8.0_91]
+	at org.springframework.beans.factory.support.SimpleInstantiationStrategy.instantiate(SimpleInstantiationStrategy.java:154) ~[spring-beans-5.0.4.RELEASE.jar:5.0.4.RELEASE]
+	... 19 common frames omitted
+Caused by: java.lang.NoSuchMethodError: com.google.gson.GsonBuilder.setLenient()Lcom/google/gson/GsonBuilder;
+	at java.lang.invoke.MethodHandleNatives.resolve(Native Method) ~[na:1.8.0_91]
+	at java.lang.invoke.MemberName$Factory.resolve(MemberName.java:977) ~[na:1.8.0_91]
+	at java.lang.invoke.MemberName$Factory.resolveOrFail(MemberName.java:1002) ~[na:1.8.0_91]
+	at java.lang.invoke.MethodHandles$Lookup.resolveOrFail(MethodHandles.java:1390) ~[na:1.8.0_91]
+	at java.lang.invoke.MethodHandles$Lookup.linkMethodHandleConstant(MethodHandles.java:1746) ~[na:1.8.0_91]
+	at java.lang.invoke.MethodHandleNatives.linkMethodHandleConstant(MethodHandleNatives.java:477) ~[na:1.8.0_91]
+	... 33 common frames omitted
+
+2018-12-03 08:14:00.570  INFO 11852 --- [main] com.xws.oa.App                           : Starting App on DESKTOP-NEAI5B2 with PID 11852 (E:\develp_soft\Eclipse\workspace\myself\oa\target\classes started by LENOVO in E:\develp_soft\Eclipse\workspace\myself\oa)
+2018-12-03 08:14:00.664  INFO 11852 --- [main] com.xws.oa.App                           : No active profile set, falling back to default profiles: default
+2018-12-03 08:14:03.836  WARN 11852 --- [main] o.m.s.mapper.ClassPathMapperScanner      : No MyBatis mapper was found in '[com.xws.oa.dao]' package. Please check your configuration.
+2018-12-03 08:14:04.180  WARN 11852 --- [main] o.m.s.mapper.ClassPathMapperScanner      : No MyBatis mapper was found in '[com.xws.oa]' package. Please check your configuration.
+2018-12-03 08:14:07.782  INFO 11852 --- [main] o.apache.catalina.core.StandardService   : Starting service Tomcat
+2018-12-03 08:14:07.785  INFO 11852 --- [main] org.apache.catalina.core.StandardEngine  : Starting Servlet Engine: Apache Tomcat/8.5.4
+2018-12-03 08:14:08.338  INFO 11852 --- [localhost-startStop-1] o.a.c.c.C.[Tomcat].[localhost].[/oa]     : Initializing Spring embedded WebApplicationContext
+2018-12-03 08:14:11.876  WARN 11852 --- [main] .t.AbstractTemplateResolverConfiguration : Cannot find template location: classpath:/static/ (please add some templates or check your Thymeleaf configuration)
+2018-12-03 08:14:15.046  INFO 11852 --- [main] com.xws.oa.App                           : Started App in 16.434 seconds (JVM running for 18.587)
+2018-12-03 08:15:45.391  INFO 6584 --- [main] com.xws.oa.App                           : Starting App on DESKTOP-NEAI5B2 with PID 6584 (E:\develp_soft\Eclipse\workspace\myself\oa\target\classes started by LENOVO in E:\develp_soft\Eclipse\workspace\myself\oa)
+2018-12-03 08:15:45.417  INFO 6584 --- [main] com.xws.oa.App                           : No active profile set, falling back to default profiles: default
+2018-12-03 08:15:47.396  WARN 6584 --- [main] o.m.s.mapper.ClassPathMapperScanner      : No MyBatis mapper was found in '[com.xws.oa.dao]' package. Please check your configuration.
+2018-12-03 08:15:47.637  WARN 6584 --- [main] o.m.s.mapper.ClassPathMapperScanner      : No MyBatis mapper was found in '[com.xws.oa]' package. Please check your configuration.
+2018-12-03 08:15:49.942  INFO 6584 --- [main] o.apache.catalina.core.StandardService   : Starting service Tomcat
+2018-12-03 08:15:49.945  INFO 6584 --- [main] org.apache.catalina.core.StandardEngine  : Starting Servlet Engine: Apache Tomcat/8.5.4
+2018-12-03 08:15:50.222  INFO 6584 --- [localhost-startStop-1] o.a.c.c.C.[Tomcat].[localhost].[/oa]     : Initializing Spring embedded WebApplicationContext
+2018-12-03 08:15:52.360  WARN 6584 --- [main] .t.AbstractTemplateResolverConfiguration : Cannot find template location: classpath:/static/ (please add some templates or check your Thymeleaf configuration)
+2018-12-03 08:15:54.363  INFO 6584 --- [main] com.xws.oa.App                           : Started App in 9.952 seconds (JVM running for 10.98)
+2018-12-03 08:16:23.256  INFO 6584 --- [http-nio-8080-exec-2] o.a.c.c.C.[Tomcat].[localhost].[/oa]     : Initializing Spring FrameworkServlet 'dispatcherServlet'
+2018-12-03 08:28:08.536  INFO 11476 --- [main] com.xws.oa.App                           : Starting App on DESKTOP-NEAI5B2 with PID 11476 (E:\develp_soft\Eclipse\workspace\myself\oa\target\classes started by LENOVO in E:\develp_soft\Eclipse\workspace\myself\oa)
+2018-12-03 08:28:08.553  INFO 11476 --- [main] com.xws.oa.App                           : No active profile set, falling back to default profiles: default
+2018-12-03 08:28:13.172  INFO 11476 --- [main] o.apache.catalina.core.StandardService   : Starting service Tomcat
+2018-12-03 08:28:13.175  INFO 11476 --- [main] org.apache.catalina.core.StandardEngine  : Starting Servlet Engine: Apache Tomcat/8.5.4
+2018-12-03 08:28:13.442  INFO 11476 --- [localhost-startStop-1] o.a.c.c.C.[Tomcat].[localhost].[/oa]     : Initializing Spring embedded WebApplicationContext
+2018-12-03 08:28:16.039  WARN 11476 --- [main] .t.AbstractTemplateResolverConfiguration : Cannot find template location: classpath:/static/ (please add some templates or check your Thymeleaf configuration)
+2018-12-03 08:28:17.692  INFO 11476 --- [main] com.xws.oa.App                           : Started App in 10.292 seconds (JVM running for 11.425)
+2018-12-03 08:28:31.851  INFO 11476 --- [http-nio-8080-exec-3] o.a.c.c.C.[Tomcat].[localhost].[/oa]     : Initializing Spring FrameworkServlet 'dispatcherServlet'
+2018-12-03 08:28:32.136  INFO 11476 --- [http-nio-8080-exec-3] com.alibaba.druid.pool.DruidDataSource   : {dataSource-1} inited
