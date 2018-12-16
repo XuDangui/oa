@@ -46,7 +46,7 @@
 				    <template slot="title">
 				      <i class="el-icon-menu"></i>{{item.name}}
 				    </template>
-				    <pl-left-menu v-for="(subitem,index) in item.childs" :item="subitem" key="index">
+				    <pl-left-menu v-for="(subitem,index) in item.childs" :item="subitem" :key="index">
 				    </pl-left-menu>
 				  </el-submenu>
 				  <el-menu-item v-else :index="item.id" @click.native="router(item)">

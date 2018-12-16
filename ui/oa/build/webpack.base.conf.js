@@ -8,7 +8,7 @@ function resolve (dir) {
   return path.join(__dirname, '..', dir)
 }
 
-
+var webpack = require('webpack')
 
 module.exports = {
   context: path.resolve(__dirname, '../'),
@@ -27,6 +27,7 @@ module.exports = {
     alias: {
       'vue$': 'vue/dist/vue.esm.js',
       '@': resolve('src'),
+      'jquery': path.resolve(__dirname, '../node_modules/jquery/src/jquery')
     }
   },
   module: {

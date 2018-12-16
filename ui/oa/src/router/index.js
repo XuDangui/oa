@@ -88,6 +88,20 @@ export default new Router({
       component (resolve) {
 	      require(['@/components/attendanceCheck/attendanceCheck.vue'], resolve);
 	    }
+    },
+    {
+      path: '/orgManage',
+      name: 'orgManage',
+      component (resolve) {
+	      require(['@/components/orgManage/orgManage.vue'], resolve);
+	    }
+    },
+    {
+      path: '/employee',
+      name: 'employee',
+      component (resolve) {
+	      require(['@/components/employee/employee.vue'], resolve);
+	    }
     }
   ]
 })
