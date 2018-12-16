@@ -1,0 +1,241 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.xws.oa.dao.UserMapper">
+  <resultMap id="BaseResultMap" type="com.xws.oa.entity.User">
+    <id column="id" jdbcType="VARCHAR" property="id" />
+    <result column="name" jdbcType="VARCHAR" property="name" />
+    <result column="password" jdbcType="VARCHAR" property="password" />
+    <result column="sex" jdbcType="VARCHAR" property="sex" />
+    <result column="age" jdbcType="INTEGER" property="age" />
+    <result column="addr" jdbcType="VARCHAR" property="addr" />
+    <result column="emplyee_no" jdbcType="VARCHAR" property="emplyeeNo" />
+    <result column="credit_no" jdbcType="VARCHAR" property="creditNo" />
+    <result column="birthdate" jdbcType="TIMESTAMP" property="birthdate" />
+    <result column="dept_id" jdbcType="VARCHAR" property="deptId" />
+    <result column="dept_no" jdbcType="VARCHAR" property="deptNo" />
+    <result column="dept_name" jdbcType="VARCHAR" property="deptName" />
+    <result column="position" jdbcType="VARCHAR" property="position" />
+    <result column="enroll_date" jdbcType="TIMESTAMP" property="enrollDate" />
+    <result column="phone" jdbcType="VARCHAR" property="phone" />
+    <result column="account" jdbcType="VARCHAR" property="account" />
+    <result column="role" jdbcType="VARCHAR" property="role" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    id, name, password, sex, age, addr, emplyee_no, credit_no, birthdate, dept_id, dept_no, 
+    dept_name, position, enroll_date, phone, account, role
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.String" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from tb_user
+    where id = #{id,jdbcType=VARCHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String">
+    delete from tb_user
+    where id = #{id,jdbcType=VARCHAR}
+  </delete>
+  <insert id="insert" parameterType="com.xws.oa.entity.User">
+    insert into tb_user (id, name, password, 
+      sex, age, addr, emplyee_no, 
+      credit_no, birthdate, dept_id, 
+      dept_no, dept_name, position, 
+      enroll_date, phone, account, 
+      role)
+    values (#{id,jdbcType=VARCHAR}, #{name,jdbcType=VARCHAR}, #{password,jdbcType=VARCHAR}, 
+      #{sex,jdbcType=VARCHAR}, #{age,jdbcType=INTEGER}, #{addr,jdbcType=VARCHAR}, #{emplyeeNo,jdbcType=VARCHAR}, 
+      #{creditNo,jdbcType=VARCHAR}, #{birthdate,jdbcType=TIMESTAMP}, #{deptId,jdbcType=VARCHAR}, 
+      #{deptNo,jdbcType=VARCHAR}, #{deptName,jdbcType=VARCHAR}, #{position,jdbcType=VARCHAR}, 
+      #{enrollDate,jdbcType=TIMESTAMP}, #{phone,jdbcType=VARCHAR}, #{account,jdbcType=VARCHAR}, 
+      #{role,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.xws.oa.entity.User">
+    insert into tb_user
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        id,
+      </if>
+      <if test="name != null">
+        name,
+      </if>
+      <if test="password != null">
+        password,
+      </if>
+      <if test="sex != null">
+        sex,
+      </if>
+      <if test="age != null">
+        age,
+      </if>
+      <if test="addr != null">
+        addr,
+      </if>
+      <if test="emplyeeNo != null">
+        emplyee_no,
+      </if>
+      <if test="creditNo != null">
+        credit_no,
+      </if>
+      <if test="birthdate != null">
+        birthdate,
+      </if>
+      <if test="deptId != null">
+        dept_id,
+      </if>
+      <if test="deptNo != null">
+        dept_no,
+      </if>
+      <if test="deptName != null">
+        dept_name,
+      </if>
+      <if test="position != null">
+        position,
+      </if>
+      <if test="enrollDate != null">
+        enroll_date,
+      </if>
+      <if test="phone != null">
+        phone,
+      </if>
+      <if test="account != null">
+        account,
+      </if>
+      <if test="role != null">
+        role,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        #{id,jdbcType=VARCHAR},
+      </if>
+      <if test="name != null">
+        #{name,jdbcType=VARCHAR},
+      </if>
+      <if test="password != null">
+        #{password,jdbcType=VARCHAR},
+      </if>
+      <if test="sex != null">
+        #{sex,jdbcType=VARCHAR},
+      </if>
+      <if test="age != null">
+        #{age,jdbcType=INTEGER},
+      </if>
+      <if test="addr != null">
+        #{addr,jdbcType=VARCHAR},
+      </if>
+      <if test="emplyeeNo != null">
+        #{emplyeeNo,jdbcType=VARCHAR},
+      </if>
+      <if test="creditNo != null">
+        #{creditNo,jdbcType=VARCHAR},
+      </if>
+      <if test="birthdate != null">
+        #{birthdate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="deptId != null">
+        #{deptId,jdbcType=VARCHAR},
+      </if>
+      <if test="deptNo != null">
+        #{deptNo,jdbcType=VARCHAR},
+      </if>
+      <if test="deptName != null">
+        #{deptName,jdbcType=VARCHAR},
+      </if>
+      <if test="position != null">
+        #{position,jdbcType=VARCHAR},
+      </if>
+      <if test="enrollDate != null">
+        #{enrollDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="phone != null">
+        #{phone,jdbcType=VARCHAR},
+      </if>
+      <if test="account != null">
+        #{account,jdbcType=VARCHAR},
+      </if>
+      <if test="role != null">
+        #{role,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.xws.oa.entity.User">
+    update tb_user
+    <set>
+      <if test="name != null">
+        name = #{name,jdbcType=VARCHAR},
+      </if>
+      <if test="password != null">
+        password = #{password,jdbcType=VARCHAR},
+      </if>
+      <if test="sex != null">
+        sex = #{sex,jdbcType=VARCHAR},
+      </if>
+      <if test="age != null">
+        age = #{age,jdbcType=INTEGER},
+      </if>
+      <if test="addr != null">
+        addr = #{addr,jdbcType=VARCHAR},
+      </if>
+      <if test="emplyeeNo != null">
+        emplyee_no = #{emplyeeNo,jdbcType=VARCHAR},
+      </if>
+      <if test="creditNo != null">
+        credit_no = #{creditNo,jdbcType=VARCHAR},
+      </if>
+      <if test="birthdate != null">
+        birthdate = #{birthdate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="deptId != null">
+        dept_id = #{deptId,jdbcType=VARCHAR},
+      </if>
+      <if test="deptNo != null">
+        dept_no = #{deptNo,jdbcType=VARCHAR},
+      </if>
+      <if test="deptName != null">
+        dept_name = #{deptName,jdbcType=VARCHAR},
+      </if>
+      <if test="position != null">
+        position = #{position,jdbcType=VARCHAR},
+      </if>
+      <if test="enrollDate != null">
+        enroll_date = #{enrollDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="phone != null">
+        phone = #{phone,jdbcType=VARCHAR},
+      </if>
+      <if test="account != null">
+        account = #{account,jdbcType=VARCHAR},
+      </if>
+      <if test="role != null">
+        role = #{role,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where id = #{id,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.xws.oa.entity.User">
+    update tb_user
+    set name = #{name,jdbcType=VARCHAR},
+      password = #{password,jdbcType=VARCHAR},
+      sex = #{sex,jdbcType=VARCHAR},
+      age = #{age,jdbcType=INTEGER},
+      addr = #{addr,jdbcType=VARCHAR},
+      emplyee_no = #{emplyeeNo,jdbcType=VARCHAR},
+      credit_no = #{creditNo,jdbcType=VARCHAR},
+      birthdate = #{birthdate,jdbcType=TIMESTAMP},
+      dept_id = #{deptId,jdbcType=VARCHAR},
+      dept_no = #{deptNo,jdbcType=VARCHAR},
+      dept_name = #{deptName,jdbcType=VARCHAR},
+      position = #{position,jdbcType=VARCHAR},
+      enroll_date = #{enrollDate,jdbcType=TIMESTAMP},
+      phone = #{phone,jdbcType=VARCHAR},
+      account = #{account,jdbcType=VARCHAR},
+      role = #{role,jdbcType=VARCHAR}
+    where id = #{id,jdbcType=VARCHAR}
+  </update>
+  
+  <select id="selectByAccount" parameterType="java.lang.String" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from tb_user
+    where account = #{account,jdbcType=VARCHAR}
+  </select>
+</mapper>
