@@ -1,0 +1,145 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.xws.oa.dao.BegBreakMapper">
+  <resultMap id="BaseResultMap" type="com.xws.oa.entity.BegBreak">
+    <id column="beg_no" jdbcType="VARCHAR" property="begNo" />
+    <result column="beg_day" jdbcType="INTEGER" property="begDay" />
+    <result column="beg_type" jdbcType="VARCHAR" property="begType" />
+    <result column="beg_reason" jdbcType="VARCHAR" property="begReason" />
+    <result column="beg_start" jdbcType="TIMESTAMP" property="begStart" />
+    <result column="beg_end" jdbcType="TIMESTAMP" property="begEnd" />
+    <result column="result" jdbcType="BIT" property="result" />
+    <result column="emp_no" jdbcType="VARCHAR" property="empNo" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    beg_no, beg_day, beg_type, beg_reason, beg_start, beg_end, result, emp_no
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.String" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from tb_beg_break
+    where beg_no = #{begNo,jdbcType=VARCHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String">
+    delete from tb_beg_break
+    where beg_no = #{begNo,jdbcType=VARCHAR}
+  </delete>
+  <insert id="insert" parameterType="com.xws.oa.entity.BegBreak">
+    insert into tb_beg_break (beg_no, beg_day, beg_type, 
+      beg_reason, beg_start, beg_end, 
+      result, emp_no)
+    values (#{begNo,jdbcType=VARCHAR}, #{begDay,jdbcType=INTEGER}, #{begType,jdbcType=VARCHAR}, 
+      #{begReason,jdbcType=VARCHAR}, #{begStart,jdbcType=TIMESTAMP}, #{begEnd,jdbcType=TIMESTAMP}, 
+      #{result,jdbcType=BIT}, #{empNo,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.xws.oa.entity.BegBreak">
+    insert into tb_beg_break
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="begNo != null">
+        beg_no,
+      </if>
+      <if test="begDay != null">
+        beg_day,
+      </if>
+      <if test="begType != null">
+        beg_type,
+      </if>
+      <if test="begReason != null">
+        beg_reason,
+      </if>
+      <if test="begStart != null">
+        beg_start,
+      </if>
+      <if test="begEnd != null">
+        beg_end,
+      </if>
+      <if test="result != null">
+        result,
+      </if>
+      <if test="empNo != null">
+        emp_no,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="begNo != null">
+        #{begNo,jdbcType=VARCHAR},
+      </if>
+      <if test="begDay != null">
+        #{begDay,jdbcType=INTEGER},
+      </if>
+      <if test="begType != null">
+        #{begType,jdbcType=VARCHAR},
+      </if>
+      <if test="begReason != null">
+        #{begReason,jdbcType=VARCHAR},
+      </if>
+      <if test="begStart != null">
+        #{begStart,jdbcType=TIMESTAMP},
+      </if>
+      <if test="begEnd != null">
+        #{begEnd,jdbcType=TIMESTAMP},
+      </if>
+      <if test="result != null">
+        #{result,jdbcType=BIT},
+      </if>
+      <if test="empNo != null">
+        #{empNo,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.xws.oa.entity.BegBreak">
+    update tb_beg_break
+    <set>
+      <if test="begDay != null">
+        beg_day = #{begDay,jdbcType=INTEGER},
+      </if>
+      <if test="begType != null">
+        beg_type = #{begType,jdbcType=VARCHAR},
+      </if>
+      <if test="begReason != null">
+        beg_reason = #{begReason,jdbcType=VARCHAR},
+      </if>
+      <if test="begStart != null">
+        beg_start = #{begStart,jdbcType=TIMESTAMP},
+      </if>
+      <if test="begEnd != null">
+        beg_end = #{begEnd,jdbcType=TIMESTAMP},
+      </if>
+      <if test="result != null">
+        result = #{result,jdbcType=BIT},
+      </if>
+      <if test="empNo != null">
+        emp_no = #{empNo,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where beg_no = #{begNo,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.xws.oa.entity.BegBreak">
+    update tb_beg_break
+    set beg_day = #{begDay,jdbcType=INTEGER},
+      beg_type = #{begType,jdbcType=VARCHAR},
+      beg_reason = #{begReason,jdbcType=VARCHAR},
+      beg_start = #{begStart,jdbcType=TIMESTAMP},
+      beg_end = #{begEnd,jdbcType=TIMESTAMP},
+      result = #{result,jdbcType=BIT},
+      emp_no = #{empNo,jdbcType=VARCHAR}
+    where beg_no = #{begNo,jdbcType=VARCHAR}
+  </update>
+  
+  <select id="selectList" parameterType="java.util.Map" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from tb_beg_break
+    where 1=1
+     <if test="begNo != null and begNo != ''">
+        and beg_no like '%${begNo}%'
+      </if>
+  </select>
+  
+  <delete id="deleteBatch" parameterType = "java.util.List">
+  	delete from tb_beg_break where beg_no in
+      <foreach collection="list"  item="item" open="(" separator="," close=")"  >
+           #{item}
+      </foreach>
+  </delete>
+</mapper>

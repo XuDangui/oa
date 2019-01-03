@@ -1,0 +1,145 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.xws.oa.dao.EmployeeMapper">
+  <resultMap id="BaseResultMap" type="com.xws.oa.entity.Employee">
+    <id column="emp_no" jdbcType="VARCHAR" property="empNo" />
+    <result column="emp_name" jdbcType="VARCHAR" property="empName" />
+    <result column="sex" jdbcType="CHAR" property="sex" />
+    <result column="age" jdbcType="INTEGER" property="age" />
+    <result column="address" jdbcType="VARCHAR" property="address" />
+    <result column="entry_date" jdbcType="TIMESTAMP" property="entryDate" />
+    <result column="phone" jdbcType="VARCHAR" property="phone" />
+    <result column="dept_no" jdbcType="VARCHAR" property="deptNo" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    emp_no, emp_name, sex, age, address, entry_date, phone, dept_no
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.String" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from tb_employee
+    where emp_no = #{empNo,jdbcType=VARCHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String">
+    delete from tb_employee
+    where emp_no = #{empNo,jdbcType=VARCHAR}
+  </delete>
+  <insert id="insert" parameterType="com.xws.oa.entity.Employee">
+    insert into tb_employee (emp_no, emp_name, sex, 
+      age, address, entry_date, 
+      phone, dept_no)
+    values (#{empNo,jdbcType=VARCHAR}, #{empName,jdbcType=VARCHAR}, #{sex,jdbcType=CHAR}, 
+      #{age,jdbcType=INTEGER}, #{address,jdbcType=VARCHAR}, #{entryDate,jdbcType=TIMESTAMP}, 
+      #{phone,jdbcType=VARCHAR}, #{deptNo,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.xws.oa.entity.Employee">
+    insert into tb_employee
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="empNo != null">
+        emp_no,
+      </if>
+      <if test="empName != null">
+        emp_name,
+      </if>
+      <if test="sex != null">
+        sex,
+      </if>
+      <if test="age != null">
+        age,
+      </if>
+      <if test="address != null">
+        address,
+      </if>
+      <if test="entryDate != null">
+        entry_date,
+      </if>
+      <if test="phone != null">
+        phone,
+      </if>
+      <if test="deptNo != null">
+        dept_no,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="empNo != null">
+        #{empNo,jdbcType=VARCHAR},
+      </if>
+      <if test="empName != null">
+        #{empName,jdbcType=VARCHAR},
+      </if>
+      <if test="sex != null">
+        #{sex,jdbcType=CHAR},
+      </if>
+      <if test="age != null">
+        #{age,jdbcType=INTEGER},
+      </if>
+      <if test="address != null">
+        #{address,jdbcType=VARCHAR},
+      </if>
+      <if test="entryDate != null">
+        #{entryDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="phone != null">
+        #{phone,jdbcType=VARCHAR},
+      </if>
+      <if test="deptNo != null">
+        #{deptNo,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.xws.oa.entity.Employee">
+    update tb_employee
+    <set>
+      <if test="empName != null">
+        emp_name = #{empName,jdbcType=VARCHAR},
+      </if>
+      <if test="sex != null">
+        sex = #{sex,jdbcType=CHAR},
+      </if>
+      <if test="age != null">
+        age = #{age,jdbcType=INTEGER},
+      </if>
+      <if test="address != null">
+        address = #{address,jdbcType=VARCHAR},
+      </if>
+      <if test="entryDate != null">
+        entry_date = #{entryDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="phone != null">
+        phone = #{phone,jdbcType=VARCHAR},
+      </if>
+      <if test="deptNo != null">
+        dept_no = #{deptNo,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where emp_no = #{empNo,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.xws.oa.entity.Employee">
+    update tb_employee
+    set emp_name = #{empName,jdbcType=VARCHAR},
+      sex = #{sex,jdbcType=CHAR},
+      age = #{age,jdbcType=INTEGER},
+      address = #{address,jdbcType=VARCHAR},
+      entry_date = #{entryDate,jdbcType=TIMESTAMP},
+      phone = #{phone,jdbcType=VARCHAR},
+      dept_no = #{deptNo,jdbcType=VARCHAR}
+    where emp_no = #{empNo,jdbcType=VARCHAR}
+  </update>
+  
+  <select id="selectList" parameterType="java.util.Map" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from tb_employee
+    where 1=1
+     <if test="empNo != null and empNo != ''">
+        and emp_no like '%${empNo}%'
+      </if>
+  </select>
+  
+  <delete id="deleteBatch" parameterType = "java.util.List">
+  	delete from tb_employee where emp_no in
+      <foreach collection="list"  item="item" open="(" separator="," close=")"  >
+           #{item}
+      </foreach>
+  </delete>
+</mapper>

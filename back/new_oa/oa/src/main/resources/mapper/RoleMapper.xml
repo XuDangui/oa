@@ -1,0 +1,88 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.xws.oa.dao.RoleMapper">
+  <resultMap id="BaseResultMap" type="com.xws.oa.entity.Role">
+    <id column="account" jdbcType="VARCHAR" property="account" />
+    <id column="authorization_no" jdbcType="VARCHAR" property="authorizationNo" />
+    <result column="role_name" jdbcType="VARCHAR" property="roleName" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    account, authorization_no, role_name
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="com.xws.oa.entity.RoleKey" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from tb_role
+    where account = #{account,jdbcType=VARCHAR}
+      and authorization_no = #{authorizationNo,jdbcType=VARCHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="com.xws.oa.entity.RoleKey">
+    delete from tb_role
+    where account = #{account,jdbcType=VARCHAR}
+      and authorization_no = #{authorizationNo,jdbcType=VARCHAR}
+  </delete>
+  <insert id="insert" parameterType="com.xws.oa.entity.Role">
+    insert into tb_role (account, authorization_no, role_name
+      )
+    values (#{account,jdbcType=VARCHAR}, #{authorizationNo,jdbcType=VARCHAR}, #{roleName,jdbcType=VARCHAR}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.xws.oa.entity.Role">
+    insert into tb_role
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="account != null">
+        account,
+      </if>
+      <if test="authorizationNo != null">
+        authorization_no,
+      </if>
+      <if test="roleName != null">
+        role_name,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="account != null">
+        #{account,jdbcType=VARCHAR},
+      </if>
+      <if test="authorizationNo != null">
+        #{authorizationNo,jdbcType=VARCHAR},
+      </if>
+      <if test="roleName != null">
+        #{roleName,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.xws.oa.entity.Role">
+    update tb_role
+    <set>
+      <if test="roleName != null">
+        role_name = #{roleName,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where account = #{account,jdbcType=VARCHAR}
+      and authorization_no = #{authorizationNo,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.xws.oa.entity.Role">
+    update tb_role
+    set role_name = #{roleName,jdbcType=VARCHAR}
+    where account = #{account,jdbcType=VARCHAR}
+      and authorization_no = #{authorizationNo,jdbcType=VARCHAR}
+  </update>
+  
+  <select id="selectList" parameterType="java.util.Map" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from tb_role
+    where 1=1
+     <if test="account != null and account != ''">
+        and account like '%${account}%'
+      </if>
+  </select>
+  
+  <delete id="deleteBatch" parameterType = "java.util.List">
+  	delete from tb_role where account in
+      <foreach collection="list"  item="item" open="(" separator="," close=")"  >
+           #{item}
+      </foreach>
+  </delete>
+</mapper>

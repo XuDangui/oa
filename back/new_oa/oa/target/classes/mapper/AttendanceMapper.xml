@@ -1,0 +1,117 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.xws.oa.dao.AttendanceMapper">
+  <resultMap id="BaseResultMap" type="com.xws.oa.entity.Attendance">
+    <id column="attendance_no" jdbcType="VARCHAR" property="attendanceNo" />
+    <result column="attendance_state" jdbcType="VARCHAR" property="attendanceState" />
+    <result column="attendance_start" jdbcType="TIMESTAMP" property="attendanceStart" />
+    <result column="attendance_end" jdbcType="TIMESTAMP" property="attendanceEnd" />
+    <result column="emp_no" jdbcType="VARCHAR" property="empNo" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    attendance_no, attendance_state, attendance_start, attendance_end, emp_no
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.String" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from tb_attendance
+    where attendance_no = #{attendanceNo,jdbcType=VARCHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String">
+    delete from tb_attendance
+    where attendance_no = #{attendanceNo,jdbcType=VARCHAR}
+  </delete>
+  <insert id="insert" parameterType="com.xws.oa.entity.Attendance">
+    insert into tb_attendance (attendance_no, attendance_state, attendance_start, 
+      attendance_end, emp_no)
+    values (#{attendanceNo,jdbcType=VARCHAR}, #{attendanceState,jdbcType=VARCHAR}, #{attendanceStart,jdbcType=TIMESTAMP}, 
+      #{attendanceEnd,jdbcType=TIMESTAMP}, #{empNo,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.xws.oa.entity.Attendance">
+    insert into tb_attendance
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="attendanceNo != null">
+        attendance_no,
+      </if>
+      <if test="attendanceState != null">
+        attendance_state,
+      </if>
+      <if test="attendanceStart != null">
+        attendance_start,
+      </if>
+      <if test="attendanceEnd != null">
+        attendance_end,
+      </if>
+      <if test="empNo != null">
+        emp_no,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="attendanceNo != null">
+        #{attendanceNo,jdbcType=VARCHAR},
+      </if>
+      <if test="attendanceState != null">
+        #{attendanceState,jdbcType=VARCHAR},
+      </if>
+      <if test="attendanceStart != null">
+        #{attendanceStart,jdbcType=TIMESTAMP},
+      </if>
+      <if test="attendanceEnd != null">
+        #{attendanceEnd,jdbcType=TIMESTAMP},
+      </if>
+      <if test="empNo != null">
+        #{empNo,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.xws.oa.entity.Attendance">
+    update tb_attendance
+    <set>
+      <if test="attendanceState != null">
+        attendance_state = #{attendanceState,jdbcType=VARCHAR},
+      </if>
+      <if test="attendanceStart != null">
+        attendance_start = #{attendanceStart,jdbcType=TIMESTAMP},
+      </if>
+      <if test="attendanceEnd != null">
+        attendance_end = #{attendanceEnd,jdbcType=TIMESTAMP},
+      </if>
+      <if test="empNo != null">
+        emp_no = #{empNo,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where attendance_no = #{attendanceNo,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.xws.oa.entity.Attendance">
+    update tb_attendance
+    set attendance_state = #{attendanceState,jdbcType=VARCHAR},
+      attendance_start = #{attendanceStart,jdbcType=TIMESTAMP},
+      attendance_end = #{attendanceEnd,jdbcType=TIMESTAMP},
+      emp_no = #{empNo,jdbcType=VARCHAR}
+    where attendance_no = #{attendanceNo,jdbcType=VARCHAR}
+  </update>
+  
+  <select id="selectByPrimaryKey" parameterType="java.lang.String" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from tb_attendance
+    where attendance_no = #{attendanceNo,jdbcType=VARCHAR}
+  </select>
+  
+  <select id="selectList" parameterType="java.util.Map" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from tb_attendance
+    where 1=1
+     <if test="attendanceNo != null and attendanceNo != ''">
+        and attendance_no like '%${attendanceNo}%'
+      </if>
+  </select>
+  
+  <delete id="deleteBatch" parameterType = "java.util.List">
+  	delete from tb_attendance where attendance_no in
+      <foreach collection="list"  item="item" open="(" separator="," close=")"  >
+           #{item}
+      </foreach>
+  </delete>
+</mapper>

@@ -1,0 +1,123 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.xws.oa.dao.WorkOvertimeMapper">
+  <resultMap id="BaseResultMap" type="com.xws.oa.entity.WorkOvertime">
+    <id column="over_no" jdbcType="VARCHAR" property="overNo" />
+    <result column="over_reason" jdbcType="VARCHAR" property="overReason" />
+    <result column="over_start" jdbcType="TIMESTAMP" property="overStart" />
+    <result column="over_end" jdbcType="TIMESTAMP" property="overEnd" />
+    <result column="result" jdbcType="BIT" property="result" />
+    <result column="emp_no" jdbcType="VARCHAR" property="empNo" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    over_no, over_reason, over_start, over_end, result, emp_no
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.String" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from tb_work_overtime
+    where over_no = #{overNo,jdbcType=VARCHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String">
+    delete from tb_work_overtime
+    where over_no = #{overNo,jdbcType=VARCHAR}
+  </delete>
+  <insert id="insert" parameterType="com.xws.oa.entity.WorkOvertime">
+    insert into tb_work_overtime (over_no, over_reason, over_start, 
+      over_end, result, emp_no
+      )
+    values (#{overNo,jdbcType=VARCHAR}, #{overReason,jdbcType=VARCHAR}, #{overStart,jdbcType=TIMESTAMP}, 
+      #{overEnd,jdbcType=TIMESTAMP}, #{result,jdbcType=BIT}, #{empNo,jdbcType=VARCHAR}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.xws.oa.entity.WorkOvertime">
+    insert into tb_work_overtime
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="overNo != null">
+        over_no,
+      </if>
+      <if test="overReason != null">
+        over_reason,
+      </if>
+      <if test="overStart != null">
+        over_start,
+      </if>
+      <if test="overEnd != null">
+        over_end,
+      </if>
+      <if test="result != null">
+        result,
+      </if>
+      <if test="empNo != null">
+        emp_no,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="overNo != null">
+        #{overNo,jdbcType=VARCHAR},
+      </if>
+      <if test="overReason != null">
+        #{overReason,jdbcType=VARCHAR},
+      </if>
+      <if test="overStart != null">
+        #{overStart,jdbcType=TIMESTAMP},
+      </if>
+      <if test="overEnd != null">
+        #{overEnd,jdbcType=TIMESTAMP},
+      </if>
+      <if test="result != null">
+        #{result,jdbcType=BIT},
+      </if>
+      <if test="empNo != null">
+        #{empNo,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.xws.oa.entity.WorkOvertime">
+    update tb_work_overtime
+    <set>
+      <if test="overReason != null">
+        over_reason = #{overReason,jdbcType=VARCHAR},
+      </if>
+      <if test="overStart != null">
+        over_start = #{overStart,jdbcType=TIMESTAMP},
+      </if>
+      <if test="overEnd != null">
+        over_end = #{overEnd,jdbcType=TIMESTAMP},
+      </if>
+      <if test="result != null">
+        result = #{result,jdbcType=BIT},
+      </if>
+      <if test="empNo != null">
+        emp_no = #{empNo,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where over_no = #{overNo,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.xws.oa.entity.WorkOvertime">
+    update tb_work_overtime
+    set over_reason = #{overReason,jdbcType=VARCHAR},
+      over_start = #{overStart,jdbcType=TIMESTAMP},
+      over_end = #{overEnd,jdbcType=TIMESTAMP},
+      result = #{result,jdbcType=BIT},
+      emp_no = #{empNo,jdbcType=VARCHAR}
+    where over_no = #{overNo,jdbcType=VARCHAR}
+  </update>
+  
+  <select id="selectList" parameterType="java.util.Map" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from tb_work_overtime
+    where 1=1
+     <if test="overNo != null and overNo != ''">
+        and over_no like '%${overNo}%'
+      </if>
+  </select>
+  
+  <delete id="deleteBatch" parameterType = "java.util.List">
+  	delete from tb_work_overtime where over_no in
+      <foreach collection="list"  item="item" open="(" separator="," close=")"  >
+           #{item}
+      </foreach>
+  </delete>
+</mapper>

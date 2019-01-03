@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.xws.oa.dao.AuthorizationMapper">
+  <resultMap id="BaseResultMap" type="com.xws.oa.entity.Authorization">
+    <id column="authorization_no" jdbcType="VARCHAR" property="authorizationNo" />
+    <result column="authorization_name" jdbcType="VARCHAR" property="authorizationName" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    authorization_no, authorization_name
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.String" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from tb_authorization
+    where authorization_no = #{authorizationNo,jdbcType=VARCHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String">
+    delete from tb_authorization
+    where authorization_no = #{authorizationNo,jdbcType=VARCHAR}
+  </delete>
+  <insert id="insert" parameterType="com.xws.oa.entity.Authorization">
+    insert into tb_authorization (authorization_no, authorization_name
+      )
+    values (#{authorizationNo,jdbcType=VARCHAR}, #{authorizationName,jdbcType=VARCHAR}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.xws.oa.entity.Authorization">
+    insert into tb_authorization
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="authorizationNo != null">
+        authorization_no,
+      </if>
+      <if test="authorizationName != null">
+        authorization_name,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="authorizationNo != null">
+        #{authorizationNo,jdbcType=VARCHAR},
+      </if>
+      <if test="authorizationName != null">
+        #{authorizationName,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.xws.oa.entity.Authorization">
+    update tb_authorization
+    <set>
+      <if test="authorizationName != null">
+        authorization_name = #{authorizationName,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where authorization_no = #{authorizationNo,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.xws.oa.entity.Authorization">
+    update tb_authorization
+    set authorization_name = #{authorizationName,jdbcType=VARCHAR}
+    where authorization_no = #{authorizationNo,jdbcType=VARCHAR}
+  </update>
+  
+  <select id="selectList" parameterType="java.util.Map" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from tb_authorization
+    where 1=1
+     <if test="authorizationNo != null and authorizationNo != ''">
+        and authorization_no like '%${authorizationNo}%'
+      </if>
+  </select>
+  
+  <delete id="deleteBatch" parameterType = "java.util.List">
+  	delete from tb_authorization where authorization_no in
+      <foreach collection="list"  item="item" open="(" separator="," close=")"  >
+           #{item}
+      </foreach>
+  </delete>
+</mapper>

@@ -1,0 +1,146 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.xws.oa.dao.EvectionMapper">
+  <resultMap id="BaseResultMap" type="com.xws.oa.entity.Evection">
+    <id column="evection_no" jdbcType="VARCHAR" property="evectionNo" />
+    <result column="evection_day" jdbcType="INTEGER" property="evectionDay" />
+    <result column="evection_vehicle" jdbcType="VARCHAR" property="evectionVehicle" />
+    <result column="evection_reason" jdbcType="VARCHAR" property="evectionReason" />
+    <result column="evection_start" jdbcType="TIMESTAMP" property="evectionStart" />
+    <result column="evection_end" jdbcType="TIMESTAMP" property="evectionEnd" />
+    <result column="result" jdbcType="BIT" property="result" />
+    <result column="emp_no" jdbcType="VARCHAR" property="empNo" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    evection_no, evection_day, evection_vehicle, evection_reason, evection_start, evection_end, 
+    result, emp_no
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.String" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from tb_evection
+    where evection_no = #{evectionNo,jdbcType=VARCHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String">
+    delete from tb_evection
+    where evection_no = #{evectionNo,jdbcType=VARCHAR}
+  </delete>
+  <insert id="insert" parameterType="com.xws.oa.entity.Evection">
+    insert into tb_evection (evection_no, evection_day, evection_vehicle, 
+      evection_reason, evection_start, evection_end, 
+      result, emp_no)
+    values (#{evectionNo,jdbcType=VARCHAR}, #{evectionDay,jdbcType=INTEGER}, #{evectionVehicle,jdbcType=VARCHAR}, 
+      #{evectionReason,jdbcType=VARCHAR}, #{evectionStart,jdbcType=TIMESTAMP}, #{evectionEnd,jdbcType=TIMESTAMP}, 
+      #{result,jdbcType=BIT}, #{empNo,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.xws.oa.entity.Evection">
+    insert into tb_evection
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="evectionNo != null">
+        evection_no,
+      </if>
+      <if test="evectionDay != null">
+        evection_day,
+      </if>
+      <if test="evectionVehicle != null">
+        evection_vehicle,
+      </if>
+      <if test="evectionReason != null">
+        evection_reason,
+      </if>
+      <if test="evectionStart != null">
+        evection_start,
+      </if>
+      <if test="evectionEnd != null">
+        evection_end,
+      </if>
+      <if test="result != null">
+        result,
+      </if>
+      <if test="empNo != null">
+        emp_no,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="evectionNo != null">
+        #{evectionNo,jdbcType=VARCHAR},
+      </if>
+      <if test="evectionDay != null">
+        #{evectionDay,jdbcType=INTEGER},
+      </if>
+      <if test="evectionVehicle != null">
+        #{evectionVehicle,jdbcType=VARCHAR},
+      </if>
+      <if test="evectionReason != null">
+        #{evectionReason,jdbcType=VARCHAR},
+      </if>
+      <if test="evectionStart != null">
+        #{evectionStart,jdbcType=TIMESTAMP},
+      </if>
+      <if test="evectionEnd != null">
+        #{evectionEnd,jdbcType=TIMESTAMP},
+      </if>
+      <if test="result != null">
+        #{result,jdbcType=BIT},
+      </if>
+      <if test="empNo != null">
+        #{empNo,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.xws.oa.entity.Evection">
+    update tb_evection
+    <set>
+      <if test="evectionDay != null">
+        evection_day = #{evectionDay,jdbcType=INTEGER},
+      </if>
+      <if test="evectionVehicle != null">
+        evection_vehicle = #{evectionVehicle,jdbcType=VARCHAR},
+      </if>
+      <if test="evectionReason != null">
+        evection_reason = #{evectionReason,jdbcType=VARCHAR},
+      </if>
+      <if test="evectionStart != null">
+        evection_start = #{evectionStart,jdbcType=TIMESTAMP},
+      </if>
+      <if test="evectionEnd != null">
+        evection_end = #{evectionEnd,jdbcType=TIMESTAMP},
+      </if>
+      <if test="result != null">
+        result = #{result,jdbcType=BIT},
+      </if>
+      <if test="empNo != null">
+        emp_no = #{empNo,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where evection_no = #{evectionNo,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.xws.oa.entity.Evection">
+    update tb_evection
+    set evection_day = #{evectionDay,jdbcType=INTEGER},
+      evection_vehicle = #{evectionVehicle,jdbcType=VARCHAR},
+      evection_reason = #{evectionReason,jdbcType=VARCHAR},
+      evection_start = #{evectionStart,jdbcType=TIMESTAMP},
+      evection_end = #{evectionEnd,jdbcType=TIMESTAMP},
+      result = #{result,jdbcType=BIT},
+      emp_no = #{empNo,jdbcType=VARCHAR}
+    where evection_no = #{evectionNo,jdbcType=VARCHAR}
+  </update>
+  
+  <select id="selectList" parameterType="java.util.Map" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from tb_evection
+    where 1=1
+     <if test="evectionNo != null and evectionNo != ''">
+        and evection_no like '%${evectionNo}%'
+      </if>
+  </select>
+  
+  <delete id="deleteBatch" parameterType = "java.util.List">
+  	delete from tb_evection where evection_no in
+      <foreach collection="list"  item="item" open="(" separator="," close=")"  >
+           #{item}
+      </foreach>
+  </delete>
+</mapper>
